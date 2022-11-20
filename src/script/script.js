@@ -121,6 +121,7 @@ const criar = (e) => {
 }
 
 const ler = () => {
+    if(itens.length === 0) return
     itens.sort((x, y) => x.item.toLowerCase().localeCompare(y.item.toLowerCase()))
     ul.innerHTML = ""
     itens.forEach((item, index, array) => {
