@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+/* * {
+    background-color: rgba(250, 0, 0, .1);
+} */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.header {
+    width: 100%;
+    height: 30vh;
+    max-height: 100px;
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.header__logo {
+    width: 100px;
+    display: flex;
+}
+
+.header__logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.header__desc h1 {
+    margin: 0;
+}
+
+.header__desc p {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form__header {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.form__header-label {
+    margin: 0px;
+    padding: 0px;
+    /* width: 100%; */
+    flex-grow: 3;
+}
+
+.form__header-imput {
+    margin: 0px;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.form__header-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0px;
+    padding: 10px 20px;
+}
+
+.form__list {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(85vh - 56px);
+    gap: 6px;
+}
+
+.form__list-pesquisa {
+    margin: 0px;
+}
+
+.form__list-confg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form__list-confg-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.form__list-confg-edit>div {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.form__list-confg-edit>div input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.form__list-confg-edit>div .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 34px;
+    background-color: #161f27;
+    transition: .4s;
+}
+
+.form__list-confg-edit>div .slider:before {
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    content: "off";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    background-color: #526980;
+    transform: translateX(0px);
+    transition: .4s;
+}
+
+.form__list-confg-edit>div input:checked+.slider {
+    background-color: #526980;
+}
+
+/* .form__list-confg-edit>div input:focus +.slider {
+    box-shadow: 0 0 1px #1c76c5;
+} */
+
+.form__list-confg-edit>div input:checked+.slider:before {
+    text-align: center;
+    margin: auto;
+    content: "on";
+    background-color: #1c76c5;
+    transform: translateX(26px);
+}
+
+.form__list-confg-delete-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(82 25 46 /.5);
+    margin: 0px;
+    padding: 6px;
+    height: 45px;
+}
+
+.checkbox-estilizado {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    height: 45px;
+    width: 45px;
+    position: relative;
+    padding-left: 35px;
+    /* margin-bottom: 12px; */
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.checkbox-estilizado input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkbox-estilizado .checkmark {
+    position: absolute;
+    /* top: -12.5px; */
+    left: 10px;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.checkbox-estilizado:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.checkbox-estilizado input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.checkbox-estilizado.form__list-confg--indefinido input~.checkmark {
+    background-color: #359df167;
+}
+
+.checkbox-estilizado .checkmark:after,
+.checkbox-estilizado .checkmark:before {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-estilizado input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox-estilizado.form__list-confg--indefinido input~.checkmark:before {
+    display: block;
+}
+
+.checkbox-estilizado .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-estilizado.form__list-confg--indefinido .checkmark:before {
+    left: 11px;
+    top: 5.5px;
+    /* width: 5px; */
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(90deg);
+}
+
+.form__list-ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    overflow-y: scroll;
+}
+
+.form__list-li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px var(--focus) solid;
+    border-radius: 6px;
+    padding-left: 6px;
+    /* margin-bottom: 10px; */
+}
+
+.form__list-li p {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.form__list-li * {
+    margin: 0;
+    padding: 0;
+}
+
+.form__list-li>div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form__list-li-btn {
+    /* background-color: transparent; */
+    margin: 0;
+    padding: 0;
+    height: 45px;
+    width: 45px;
+    font-size: 24px;
+}
+
+.form__list-li-btn.form__list-li-btn--delete {
+    background-color: rgba(82 25 46 /.5) !important;
+}
+
+.form__list-li-btn.form__list-li-btn--editar {
+    background-color: rgba(53 82 33 /.5) !important;
+}
+
+.form__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 600px;
+    min-height: calc(100vh - 40px);
+}
+
+.form__texto-checkbox{
+    padding: 0px;
+    height: 45px;
+}
+.form__texto-checkbox .texto{
+    /* left: 50px; */
+    transform: translateX(46px);
+}
+
+.form__texto h3 {
+    margin: 12px;
+    text-align: center;
+}
+
+.form__texto-label {
+    height: 1000px;
+    max-height: calc(100vh - 200px);
+    margin: 0px;
+}
+
+.form__texto textarea {
+    margin: 0px;
+    height: 100%;
+    resize: none;
+}
+
+.form__texto textarea:focus {
+    box-shadow: 0 0 0 2px #0096bf34;
+}
+
+.form__texto-div-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.form__texto-div-btns>button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    gap: 10px;
+    margin: 0px;
+}
+
+.form__texto-div-btns>button>i {
+    width: 24px;
+    height: 24px;
+}
+
+.form__modal {
+    width: 90%;
+    max-width: 500px;
+    margin: auto;
+    padding: 10px 30px;
+}
+
+.form__modal h2 {
+    margin: 0px;
+}
+
+.form__modal menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+    padding: 6px;
+    gap: 20px;
+}
+
+.form__modal label {
+    margin: 0px;
+    width: 100%;
+}
+
+.form__modal input {
+    margin: 0px;
+    width: 100%;
+}
+
+.form__modal button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0px;
+    padding: 10px 20px;
+}
+
+.display-none {
+    display: none;
+}
+
+
+.tin {
+    animation-name: tin;
+    animation-duration: .8s;
+}
+
+@keyframes tin {
+
+    0%,
+    20%,
+    40%,
+    50% {
+        opacity: 1;
+        transform: scale(1, 1) translateY(0);
+    }
+
+    10%,
+    30% {
+        opacity: 1;
+        transform: scale(1.1, 1.1) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1, 1) translateY(-900%);
+    }
+}
+
+.animaApagar {
+    animation-name: swashOut;
+    animation-duration: .6s;
+}
+
+@keyframes swashOut {
+    0% {
+        opacity: 1;
+        transform-origin: 50% 50%;
+        transform: scale(1, 1);
+    }
+
+    50% {
+        opacity: 1;
+        transform-origin: 50% 50%;
+        transform: scale(0.5, 0.5);
+    }
+
+    100% {
+        opacity: 0;
+        transform-origin: 50% 50%;
+        transform: scale(0.8, 0.8);
+    }
+}
+
+.swashIn {
+    animation-name: swashIn;
+    animation-duration: .6s;
+}
+
+@keyframes swashIn {
+    0% {
+        opacity: 0;
+        transform-origin: 50% 50%;
+        transform: scale(0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform-origin: 50% 50%;
+        transform: scale(1, 1);
+    }
+}
