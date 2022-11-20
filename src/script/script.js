@@ -114,6 +114,7 @@ const criar = (e) => {
         checkado: false
     }
     btnAdicionar.setAttribute("disabled", "")
+    inputAdicionar.focus()
     itens.push(item)
     inputAdicionar.value = ""
     salvaLocalStorage('dadosLista', dados)
