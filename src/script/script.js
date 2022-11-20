@@ -13,7 +13,7 @@ const btnAbreEnviar = document.querySelector('[data-btnAbreEnviar]')
 const inputTelefone = document.querySelector('[data-inputTelefone]')
 const btnEnviar = document.querySelector('[data-btnEnviar]')
 const modal = document.querySelector('[data-modal]')
-const dados = JSON.parse(localStorage.getItem('dados')) || {
+const dados = JSON.parse(localStorage.getItem('dadosLista')) || {
     "itens": [/*{
             "item": "item 1",
             "checkado": false
@@ -75,7 +75,7 @@ const criarLista = () => {
 
 const atualizaLista = (e, item) => {
     item.checkado = e.target.checked
-    salvaLocalStorage("dados", dados)
+    salvaLocalStorage("dadosLista", dados)
     criarLista()
     setChekcboxIndefinido()
 }
@@ -116,7 +116,7 @@ const criar = (e) => {
     btnAdicionar.setAttribute("disabled", "")
     itens.push(item)
     inputAdicionar.value = ""
-    salvaLocalStorage('dados', dados)
+    salvaLocalStorage('dadosLista', dados)
     ler()
 }
 
@@ -196,7 +196,7 @@ const ler = () => {
             inputAdicionar.value = item.item
 
             array.splice(array.indexOf(item), 1)
-            salvaLocalStorage("dados", dados)
+            salvaLocalStorage("dadosLista", dados)
             liItem.classList.add('tin')
             setTimeout(() => {
                 liItem.remove()
@@ -208,7 +208,7 @@ const ler = () => {
             e.preventDefault()
             const liItem = e.target.parentNode.parentNode
             array.splice(array.indexOf(item), 1)
-            salvaLocalStorage("dados", dados)
+            salvaLocalStorage("dadosLista", dados)
             liItem.classList.add('animaApagar')
             setTimeout(() => {
                 liItem.remove()
@@ -282,7 +282,7 @@ btnDeleteAll.addEventListener('click', (e) => {
         }, 500)
     })
     itens.length = 0
-    salvaLocalStorage("dados", dados)
+    salvaLocalStorage("dadosLista", dados)
 })
 
 btnAbreEnviar.addEventListener('click', (e) => {
@@ -306,14 +306,14 @@ checkboxSelectAll.addEventListener('change', () => {
     if (checkboxSelectAll.checked) {
         checkboxsSelecionar.forEach((checkbox) => checkbox.checked = true)
         itens.forEach((item) => item.checkado = true)
-        salvaLocalStorage("dados", dados)
+        salvaLocalStorage("dadosLista", dados)
         criarLista()
         return
     }
 
     itens.forEach((item) => item.checkado = false);
     checkboxsSelecionar.forEach((checkbox) => checkbox.checked = false)
-    salvaLocalStorage("dados", dados)
+    salvaLocalStorage("dadosLista", dados)
     criarLista()
 })
 
