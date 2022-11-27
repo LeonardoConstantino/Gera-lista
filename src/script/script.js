@@ -336,13 +336,6 @@ const enviarParaWhatsApp = (e) => {
     e.preventDefault()
     const inputTelefone = document.querySelector('[data-inputTelefone]')
 
-    const titulo = 'Gera lista\n[̲̅b̲̅y̲̅l̲̅є̲̅σ̲̅]\n\n'
-    const linkApi = 'https://api.whatsapp.com/send?phone=55'
-    const texto = `&text=${titulo}${textarea.value}`
-    const pattern = /^\(?\d{2}\)?[\s-]?[\s9]\d{4}-?\d{4}$/i;
-    const telefone = inputTelefone.value.match(pattern)[0]
-    const linkCompleto = linkApi + telefone + encodeURI(texto)
-
     const mostrarMsgErroTel = () => {
         const msgErroTel = document.querySelector('[data-msgErroTel]')
 
@@ -355,10 +348,18 @@ const enviarParaWhatsApp = (e) => {
 
     }
 
+    const titulo = 'Gera lista\n[̲̅b̲̅y̲̅l̲̅є̲̅σ̲̅]\n\n'
+    const linkApi = 'https://api.whatsapp.com/send?phone=55'
+    const texto = `&text=${titulo}${textarea.value}`
+    const pattern = /^\(?\d{2}\)?[\s-]?[\s9]\d{4}-?\d{4}$/i;
+
     if (!inputTelefone.value || !inputTelefone.value.match(pattern)) {
         mostrarMsgErroTel()
         return
     }
+    
+    const telefone = inputTelefone.value.match(pattern)[0]
+    const linkCompleto = linkApi + telefone + encodeURI(texto)
 
     window.open(linkCompleto)
 
