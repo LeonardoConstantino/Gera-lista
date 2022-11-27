@@ -355,7 +355,7 @@ const enviarParaWhatsApp = (e) => {
 
     }
 
-    if (!inputTelefone.value.match(pattern)) {
+    if (!inputTelefone.value || !inputTelefone.value.match(pattern)) {
         mostrarMsgErroTel()
         return
     }
