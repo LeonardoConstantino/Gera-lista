@@ -51,7 +51,7 @@
                             <span class="checkmark"></span>
                         </label>
                         <button class="display-none form__list-confg-delete-all" data-btnDelete data-btnDeleteAll title="Apagar tudo">
-                            <span>Apagrar tudo</span>
+                            <span>Apagar tudo</span>
                             <i class="material-symbols-outlined">delete</i>
                         </button>
                     </div>
@@ -80,7 +80,12 @@
                     <span class="checkmark"></span>
                 </label>
                 <label class="form__texto-label">
-                    <textarea placeholder="Sua lista aparecerá aqui" data-textarea></textarea>
+                    <textarea placeholder='Sua lista aparecerá aqui, ou você pode inserir uma lista, e clicar em "receber lista".' data-textarea></textarea>
+                    <button class="form__texto-btn" data-btnReceber disabled>
+                        <span>Receber</span>
+                        <span>lista</span>
+                        <i class="material-symbols-outlined">arrow_downward</i>
+                    </button>
                 </label>
                 <div class="form__texto-div-btns">
                     <button data-btnCopiar>
@@ -93,25 +98,35 @@
                     </button>
                 </div>
             </fieldset>
-            <dialog class="form__modal display-none" data-modal>
-                <header>
+        </form>
+        
+        <dialog class="form__modal display-none" data-modal>
+            <header>
+                <div class="form__modal-header">
                     <h2>Preencha o campo abaixo</h2>
+                    <button class="fecha-modal" data-btnFechaModal>
+                        <i class="material-symbols-outlined">close</i>
+                    </button>
+                </div>
+            </header>
+            <menu>
+                <header>
+                    Insira um numero de celular com ddd
                 </header>
-                <menu>
-                    <header>
-                        Insira um numero de celular com ddd
-                    </header>
+                <form>
                     <label>
-                        <input type="tel" pattern="^\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$" placeholder="(31) 91234-5678" data-inputTelefone>
+                        <input type="tel" required placeholder="(31) 91234-5678" data-inputTelefone>
                     </label>
+                    <small class="msgErroTel display-none" data-msgErroTel>Insira um numero valido ex.: 31 9 1234 5678</small>
                     <button data-btnEnviar>
                         <span>Enviar</span>
                         <i class="material-symbols-outlined">send</i>
                     </button>
-                </menu>
-            </dialog>
-        </form>
+                </form>
+            </menu>
+        </dialog>
     </main>
+    <button class="navegacao" data-btnNavegacao><i class="material-symbols-outlined">arrow_downward</i></button>
 </body>
 
 </html>
