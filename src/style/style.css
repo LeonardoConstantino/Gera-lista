@@ -7,9 +7,14 @@
 * {
     box-sizing: border-box;
 }
+html{
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'Roboto', sans-serif;
+    position: relative;
+    margin-bottom: 0px;
 }
 
 
@@ -84,7 +89,9 @@ main {
 .form__list {
     display: flex;
     flex-direction: column;
-    max-height: calc(85vh - 56px);
+    height: calc(100vh - 30px);
+    overflow-y: auto;
+    /* max-height: calc(85vh - 56px); */
     gap: 6px;
 }
 
@@ -169,6 +176,10 @@ main {
     margin: 0px;
     padding: 6px;
     height: 45px;
+}
+
+.form__list-confg-delete-all:hover{
+    background-color: rgba(173, 6, 6, .6);
 }
 
 .checkbox-estilizado {
@@ -328,6 +339,26 @@ main {
     height: 1000px;
     max-height: calc(100vh - 200px);
     margin: 0px;
+    position: relative;
+}
+
+.form__texto-btn{
+    margin: 0px;
+    position: absolute;
+    right: 8px;
+    transform: translateY(calc(-100% - 8px));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    font-size: 12px;
+    opacity: .1;
+}
+
+.form__texto-btn:active{
+    transform: translateY(calc(-100% - 6px));
 }
 
 .form__texto textarea {
@@ -367,6 +398,32 @@ main {
     max-width: 500px;
     margin: auto;
     padding: 10px 30px;
+    /* position: relative; */
+}
+
+.fecha-modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    margin:0px;
+    /* border-radius: 50%; */
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.fecha-modal:hover, .fecha-modal:focus{
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.form__modal-header{
+    display: flex;
+    justify-content: center;
 }
 
 .form__modal h2 {
@@ -383,17 +440,29 @@ main {
     gap: 20px;
 }
 
-.form__modal label {
+.form__modal form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+    /* padding: 6px; */
+    gap: 20px;
+}
+
+.form__modal form > label {
+    display: flex;
+    justify-content: center;
     margin: 0px;
     width: 100%;
 }
 
-.form__modal input {
+.form__modal form > label > input {
     margin: 0px;
     width: 100%;
 }
 
-.form__modal button {
+.form__modal form > button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -476,5 +545,83 @@ main {
         opacity: 1;
         transform-origin: 50% 50%;
         transform: scale(1, 1);
+    }
+}
+
+.navegacao{
+    background-color: rgba(53 82 33 /.5);
+    opacity: .2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin: 0;
+    border-radius: 50%;
+    position: sticky;
+    bottom: 12px;
+    left: 100%;
+    animation: balancadinha 1s infinite;
+}
+
+.navegacao:active{
+    opacity: 1;
+}
+
+.navegacao:focus{
+    box-shadow: none;
+}
+
+.navegacao:hover{
+    background-color: rgba(53 82 33 /.5);
+    opacity: 1;
+}
+
+.navegacao>i{
+    font-size: 60px;
+    font-weight: 100;
+}
+
+@keyframes balancadinha {
+    0% {
+        transform: translateY(0px);
+    }
+    25%{
+        transform: translateY(1px);
+    }
+    50%{
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-1px);
+    }
+}
+
+.msgErroTel{
+    padding: 10px 20px;
+    font-weight: 500;
+    animation: erro 1s infinite;
+}
+
+@keyframes erro {
+    to{
+        color: rgb(247, 62, 62);
+    }
+    from{
+        color: rgb(230, 208, 208);
+    }
+}
+
+.triste{
+    animation: tristeza 6s linear;
+}
+
+@keyframes tristeza {
+    to{
+        filter: blur(5px);
+    }
+    from{
+        filter: blur(0);
     }
 }
