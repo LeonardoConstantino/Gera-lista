@@ -12,8 +12,13 @@ const btnReceber = document.querySelector('[data-btnReceber]')
 const btnCopiar = document.querySelector('[data-btnCopiar]')
 const btnAbreEnviar = document.querySelector('[data-btnAbreEnviar]')
 const btnEnviar = document.querySelector('[data-btnEnviar]')
+const btnAbreTutorial = document.querySelector('[data-btnAbreTutorial]')
+const btnFechaTutorial = document.querySelector('[data-btnFechaTutorial]')
 const btnNavegacao = document.querySelector('[data-btnNavegacao]')
+const btnVoltarTutorial = document.querySelector('[data-btnVoltarTutorial]')
+const btnAvancarTutorial = document.querySelector('[data-btnAvancarTutorial]')
 const modal = document.querySelector('[data-modal]')
+const modalTutorial = document.querySelector('[data-modalTutorial]')
 const btnFechaModal = document.querySelector('[data-btnFechaModal]')
 const dados = JSON.parse(localStorage.getItem('dadosLista')) || {
     "itens": []
@@ -21,6 +26,7 @@ const dados = JSON.parse(localStorage.getItem('dadosLista')) || {
 const {
     itens
 } = dados
+let clicouTutorial = false
 let iniciou = true
 let cron = null
 
@@ -38,6 +44,13 @@ const salvaLocalStorage = (nome, item) => {
 const capitalized = (str) => {
     if (!str) return "kkkkkk"
     return str[0].toUpperCase() + str.substr(1)
+}
+
+const arrItensUnicos = arr => {
+    if(!arr || !Array.isArray(arr)) return []
+    return [
+        ...new Set(arr.map(i => JSON.stringify(i)))
+    ].map(i => JSON.parse(i))
 }
 
 const criarLista = () => {
@@ -90,10 +103,25 @@ const criar = (e) => {
         item: capitalized(inputAdicionar.value.toLowerCase().trim()),
         checkado: false
     }
+    const tempArr = arrItensUnicos([item, ...itens])
+    const contemItem = itens.map(i=>JSON.stringify(i))
+        .includes(JSON.stringify(item))
+
+    if(contemItem){
+        inputAdicionar.value = "Item existente"
+        setTimeout(() => {
+            inputAdicionar.value = ""
+        }, 1000);
+        return
+    }
+
     btnAdicionar.setAttribute("disabled", "")
     inputAdicionar.focus()
     inputAdicionar.value = ""
-    itens.push(item)
+
+    itens.length = 0
+    tempArr.forEach(i => itens.push(i))
+
     salvaLocalStorage('dadosLista', dados)
     ler()
 }
@@ -121,6 +149,7 @@ const ler = () => {
         span.setAttribute("class", "checkmark")
         input.setAttribute("type", "checkbox")
         input.setAttribute("data-checkboxSelecionar", "")
+        input.setAttribute("id", item.item.replace(/ /g, ""))
         if (item.checkado) {
             input.checked = true
         }
@@ -129,7 +158,7 @@ const ler = () => {
             li.classList.add("swashIn")
             li.style.animationDelay = `.${1+index}s`
             setTimeout(() => {
-                li.style.animationDelay = `0s`
+                li.removeAttribute("style")
                 li.classList.remove("swashIn")
             }, 1000)
         }
@@ -157,7 +186,11 @@ const ler = () => {
         buttonEditar.setAttribute("title", "Editar")
         buttonApagar.setAttribute("title", "Apagar")
 
-        li.innerHTML = `<p>${item.item}</p>`
+        li.innerHTML = `
+            <label for="${item.item.replace(/ /g, "")}">
+                <p>${item.item}</p>
+            </label>
+        `
         buttonEditar.innerText = "edit_note"
         buttonApagar.innerText = "delete"
 
@@ -222,17 +255,24 @@ const setDisabledBtnReceber = () => {
 
 const receberLista = (e) => {
     e.preventDefault()
-    const novaLista = textarea.value.split(`\n`)
-
-    novaLista.forEach(item => {
-        const novoItem = {
-            item: capitalized(item.toLowerCase().trim()),
+    const novaLista = textarea.value.split(`\n`).map(i => {
+        return {
+            item: capitalized(i.toLowerCase().trim()),
             checkado: false
         }
-        if (itens.includes(novoItem)) return
-        itens.push(novoItem)
     })
-    textarea.value = ""
+
+    const tempArr = arrItensUnicos([...itens, ...novaLista])
+
+    itens.length = 0
+    tempArr.forEach(i => itens.push(i))
+
+    textarea.value = "Itens duplicados foram removidos"
+    setTimeout(() => {
+        textarea.value = ""
+    }, 1000);
+
+    moverParaTopo(inputPesquisar, -12)
     salvaLocalStorage('dadosLista', dados)
     ler()
 }
@@ -253,7 +293,7 @@ const seteModoEditar = () => {
 }
 
 const mostraElementosPesquisados = (e) => {
-    const lis = Array.from(document.querySelectorAll('li'))
+    const lis = Array.from(ul.querySelectorAll('li'))
 
     lis.forEach((li) => {
         const termoPesquisado = e.target.value.toLowerCase()
@@ -270,7 +310,7 @@ const mostraElementosPesquisados = (e) => {
 
 const apagarTudoOuCancelar = (e) => {
     e.preventDefault()
-    let contador = 4
+    let contador = 5
 
     if (btnDeleteAll.innerText.includes('Cancelar')) {
         ul.classList.remove("triste")
@@ -340,7 +380,7 @@ const enviarParaWhatsApp = (e) => {
         const msgErroTel = document.querySelector('[data-msgErroTel]')
 
         if (!msgErroTel.classList.contains("display-none")) return
-        
+
         msgErroTel.classList.remove("display-none")
         setTimeout(() => {
             msgErroTel.classList.add("display-none")
@@ -357,7 +397,7 @@ const enviarParaWhatsApp = (e) => {
         mostrarMsgErroTel()
         return
     }
-    
+
     const telefone = inputTelefone.value.match(pattern)[0]
     const linkCompleto = linkApi + telefone + encodeURI(texto)
 
@@ -418,6 +458,11 @@ const setCheckedOuNaoTodosCheckbox = () => {
 
     if (checkboxSelectAll.checked) {
         checkboxsSelecionar.forEach((checkbox) => checkbox.checked = true)
+        // checkboxsSelecionar.forEach((checkbox) =>{
+        //     const liCheckbox = checkbox.parentElement.parentElement.parentElement.parentElement
+        //     if(liCheckbox.classList.contains("display-none")) return
+        //     checkbox.checked = true
+        // })
         itens.forEach((item) => item.checkado = true)
         salvaLocalStorage("dadosLista", dados)
         criarLista()
@@ -491,3 +536,74 @@ btnNavegacao.addEventListener('click', e => {
 window.addEventListener('scroll', setSetaSubirOuDescer)
 
 checkboxSelectAll.addEventListener('change', setCheckedOuNaoTodosCheckbox)
+
+btnAbreTutorial.addEventListener('click', ()=>{
+    modalTutorial.showModal()
+    clicouTutorial = true
+    btnAbreTutorial.classList.remove("nao-clicado")
+})
+
+btnFechaTutorial.addEventListener('click', ()=>{
+    modalTutorial.close()
+})
+
+btnVoltarTutorial.addEventListener('click', ()=>{
+    const lis = document.querySelectorAll('[data-liTutorial]')
+    let index
+
+    lis.forEach((item, i)=>{
+        if (!item.classList.contains("display-none")) {
+            item.classList.add("spaceOutLeft")
+            setTimeout(() => {
+                item.classList.remove("spaceOutLeft")
+                item.classList.add("display-none")
+            }, 300);
+            index = i
+        }
+    })
+
+    index--
+    if (index === -1) {
+        index = lis.length - 1
+    }
+    
+    setTimeout(() => {
+        lis[index].classList.remove("display-none")
+        lis[index].classList.add("spaceInRight")
+    }, 100);
+
+    setTimeout(() => {
+        lis[index].classList.remove("spaceInRight")
+    }, 300);
+})
+
+btnAvancarTutorial.addEventListener('click', ()=>{
+    const lis = document.querySelectorAll('[data-liTutorial]')
+    let index = 0
+
+    lis.forEach((item, i)=>{
+        if (!item.classList.contains("display-none")) {
+            item.classList.add("spaceOutRight")
+            setTimeout(() => {
+                item.classList.remove("spaceOutRight")
+                item.classList.add("display-none")
+            }, 300);
+            index = i
+        }
+    })
+    
+    index++
+    if (index === lis.length) {
+        index = 0
+    }
+    
+    setTimeout(() => {
+        lis[index].classList.remove("display-none")
+        lis[index].classList.add("spaceInLeft")
+    }, 100);
+
+    setTimeout(() => {
+        lis[index].classList.remove("spaceInLeft")
+    }, 300);
+
+})

@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/png" sizes="16x16"  href="src/favicons/favicon-16x16.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="src/favicons/favicon-16x16.png">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
-    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0"/>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0" />
     <link rel="stylesheet" href="src/style/style.css">
     <script src="src/script/script.js" defer></script>
     <title>Gera lista</title>
@@ -24,11 +26,83 @@
             <p>Crie, edite, copie e compartilhe sua lista</p>
         </div>
     </header>
+    <section class="tutorial">
+        <button class="tutorial__info-button nao-clicado" title="Click para ver um tutorial" data-btnAbreTutorial>
+            <i class="material-symbols-outlined"> Info </i>
+        </button>
+
+        <dialog class="form__modal form__modal--tutorial" data-modalTutorial>
+            <header>
+                <div class="form__modal-header">
+                    <h2>Tutorial</h2>
+                    <button class="fecha-modal" data-btnFechaTutorial>
+                        <i class="material-symbols-outlined">close</i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="div-tutoriais">
+                <ul data-ulTutorial class="ul-tutoriais">
+                    <li data-liTutorial>
+                        <h3>Inserindo um item</h3>
+                        <video alt="" width="300" height="500" preload="none" poster="src/tutorial/Capturar.JPG" controls autoplay loop>
+                            <source src="src/tutorial/inserir_1_item.webm" type="video/webm">
+                        </video>
+                    </li>
+                    <li data-liTutorial class="display-none">
+                        <h3>Excluindo um item</h3>
+                        <video alt="" width="300" height="500" preload="none" poster="src/tutorial/Capturar.JPG" controls autoplay loop>
+                            <source src="src/tutorial/excluir_1_item.webm" type="video/webm">
+                        </video>
+                    </li>
+                    <li data-liTutorial class="display-none">
+                        <h3>Editando um item</h3>
+                        <video alt="" width="300" height="500" preload="none" poster="src/tutorial/Capturar.JPG" controls autoplay loop>
+                            <source src="src/tutorial/editar_1_item.webm" type="video/webm">
+                        </video>
+                    </li>
+                    <li data-liTutorial class="display-none">
+                        <h3>Gerando a lista</h3>
+                        <video alt="" width="300" height="500" preload="none" poster="src/tutorial/Capturar.JPG" controls autoplay loop>
+                            <source src="src/tutorial/gerar_lista.webm" type="video/webm">
+                        </video>
+                    </li>
+                    <li data-liTutorial class="display-none">
+                        <h3>Adicionando vários itens</h3>
+                        <video alt="" width="300" height="500" preload="none" poster="src/tutorial/Capturar.JPG" controls autoplay loop>
+                            <source src="src/tutorial/adicionar_varios_itens.webm" type="video/webm">
+                        </video>
+                    </li>
+                    <li data-liTutorial class="display-none">
+                        <h3>pesquisando</h3>
+                        <video alt="" width="300" height="500" preload="none" poster="src/tutorial/Capturar.JPG" controls autoplay loop>
+                            <source src="src/tutorial/pesquisar.webm" type="video/webm">
+                        </video>
+                    </li>
+                    <li data-liTutorial class="display-none">
+                        <h3>Apagando todos os itens</h3>
+                        <video alt="" width="300" height="500" preload="none" poster="src/tutorial/Capturar.JPG" controls autoplay loop>
+                            <source src="src/tutorial/apagar_tudo.webm" type="video/webm">
+                        </video>
+                    </li>
+                </ul>
+                <div class="controle-tutoriais">
+                    <button class="tutorial__voltar-button " data-btnVoltarTutorial>
+                        <i class="material-symbols-outlined"> Chevron_Left </i>
+                    </button>
+                    <button class="tutorial__avancar-button " data-btnAvancarTutorial>
+                        <i class="material-symbols-outlined"> Chevron_Right </i>
+                    </button>
+                </div>
+            </div>
+        </dialog>
+    </section>
     <main>
         <form class="form">
             <header class="form__header">
                 <label class="form__header-label">
-                    <input type="text" class="form__header-imput" placeholder="Item:" spellcheck="true" data-inputAdicionar>
+                    <input type="text" class="form__header-imput" placeholder="Item:" spellcheck="true"
+                        data-inputAdicionar>
                 </label>
                 <button class="form__header-button" data-btnAdicionar disabled>
                     <span>Adicionar</span>
@@ -36,7 +110,8 @@
                 </button>
             </header>
             <fieldset class="form__list">
-                <input type="search" class="form__list-pesquisa" placeholder="Pesquisar" spellcheck="true" data-inputPesquisar>
+                <input type="search" class="form__list-pesquisa" placeholder="Pesquisar" spellcheck="true"
+                    data-inputPesquisar>
                 <div class="form__list-confg">
                     <label class="form__list-confg-edit">
                         <small>Editar</small>
@@ -46,30 +121,19 @@
                         </div>
                     </label>
                     <div>
-                        <label class="checkbox-estilizado form__list-confg-select-all" data-allCheckbox data-labelSelectAll>
+                        <label class="checkbox-estilizado form__list-confg-select-all" data-allCheckbox
+                            data-labelSelectAll>
                             <input type="checkbox" data-checkboxSelectAll>
                             <span class="checkmark"></span>
                         </label>
-                        <button class="display-none form__list-confg-delete-all" data-btnDelete data-btnDeleteAll title="Apagar tudo">
+                        <button class="display-none form__list-confg-delete-all" data-btnDelete data-btnDeleteAll
+                            title="Apagar tudo">
                             <span>Apagar tudo</span>
                             <i class="material-symbols-outlined">delete</i>
                         </button>
                     </div>
                 </div>
                 <ul class="form__list-ul" data-ul>
-                    <!-- <li class="form__list-li">
-                        <p>Item 1</p>
-                        <div>
-                            <div>
-                                <label class="checkbox-estilizado form__list-li-checkbox" data-liCheckbox>
-                                    <input type="checkbox" data-checkboxSelecionar>
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <button class="material-symbols-outlined form__list-li-btn form__list-li-btn--editar display-none" data-btnEditar title="Editar">edit_note</button>
-                            <button class="material-symbols-outlined form__list-li-btn form__list-li-btn--delete display-none" data-btnDelete title="Apagar">delete</button>
-                        </div>
-                    </li> -->
                 </ul>
             </fieldset>
             <fieldset class="form__texto">
@@ -80,7 +144,9 @@
                     <span class="checkmark"></span>
                 </label>
                 <label class="form__texto-label">
-                    <textarea placeholder='Sua lista aparecerá aqui, ou você pode inserir uma lista, e clicar em "receber lista".' data-textarea></textarea>
+                    <textarea
+                        placeholder='Sua lista aparecerá aqui, ou você pode inserir uma lista, e clicar em "receber lista".'
+                        data-textarea></textarea>
                     <button class="form__texto-btn" data-btnReceber disabled>
                         <span>Receber</span>
                         <span>lista</span>
@@ -99,7 +165,7 @@
                 </div>
             </fieldset>
         </form>
-        
+
         <dialog class="form__modal display-none" data-modal>
             <header>
                 <div class="form__modal-header">
@@ -117,7 +183,9 @@
                     <label>
                         <input type="tel" required placeholder="(31) 91234-5678" data-inputTelefone>
                     </label>
-                    <small class="msgErroTel display-none" data-msgErroTel>Insira um numero valido ex.: 31 9 1234 5678</small>
+                    <small class="msgErroTel display-none" data-msgErroTel>
+                        Insira um numero valido ex.: 31 9 12345678
+                    </small>
                     <button data-btnEnviar>
                         <span>Enviar</span>
                         <i class="material-symbols-outlined">send</i>

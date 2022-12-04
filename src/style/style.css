@@ -7,7 +7,8 @@
 * {
     box-sizing: border-box;
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
 
@@ -15,6 +16,10 @@ body {
     font-family: 'Roboto', sans-serif;
     position: relative;
     margin-bottom: 0px;
+}
+
+i {
+    user-select: none;
 }
 
 
@@ -44,6 +49,94 @@ body {
 
 .header__desc p {
     margin: 0;
+}
+
+/* .tutorial{
+} */
+
+.tutorial__info-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 0px;
+    margin: 0px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.tutorial__info-button:hover,
+.tutorial__info-button:focus {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.nao-clicado i {
+    border-radius: 50%;
+    animation: clica-em-mim 1.5s infinite;
+}
+
+@keyframes clica-em-mim {
+    0% {
+        box-shadow: 0 0 0 0px rgba(230, 230, 230, .2);
+    }
+
+    75% {
+        box-shadow: 0 0 8px 2px rgba(230, 230, 230, .2);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0px rgba(230, 230, 230, .2);
+    }
+}
+
+.form__modal--tutorial{
+    height: 730px;
+}
+
+.div-tutoriais {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-between; */
+    height: 520px;
+    /* max-height: 500px; */
+    gap: 12px;
+}
+
+.ul-tutoriais {
+    display: flex;
+    overflow: hidden;
+    list-style: none;
+    /* border: 1px solid white; */
+    width: 80%;
+    /* height: 100%; */
+    height: 450px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.ul-tutoriais li {
+    width: 100%;
+    /* height: 100%; */
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+.controle-tutoriais {
+    display: flex;
+    gap: 32px;
+}
+
+.controle-tutoriais button {
+    margin: 0px;
+    padding: 10px 20px;
+}
+
+.controle-tutoriais i {
+    font-size: 32px;
 }
 
 main {
@@ -178,7 +271,7 @@ main {
     height: 45px;
 }
 
-.form__list-confg-delete-all:hover{
+.form__list-confg-delete-all:hover {
     background-color: rgba(173, 6, 6, .6);
 }
 
@@ -290,6 +383,10 @@ main {
     padding: 0;
 }
 
+.form__list-li>[for] {
+    width: 100%;
+}
+
 .form__list-li>div {
     display: flex;
     align-items: center;
@@ -321,11 +418,12 @@ main {
     min-height: calc(100vh - 40px);
 }
 
-.form__texto-checkbox{
+.form__texto-checkbox {
     padding: 0px;
     height: 45px;
 }
-.form__texto-checkbox .texto{
+
+.form__texto-checkbox .texto {
     /* left: 50px; */
     transform: translateX(46px);
 }
@@ -342,7 +440,7 @@ main {
     position: relative;
 }
 
-.form__texto-btn{
+.form__texto-btn {
     margin: 0px;
     position: absolute;
     right: 8px;
@@ -357,7 +455,7 @@ main {
     opacity: .1;
 }
 
-.form__texto-btn:active{
+.form__texto-btn:active {
     transform: translateY(calc(-100% - 6px));
 }
 
@@ -396,12 +494,14 @@ main {
 .form__modal {
     width: 90%;
     max-width: 500px;
+    /* height: 80%; */
+    /* min-height: 700px; */
     margin: auto;
     padding: 10px 30px;
     /* position: relative; */
 }
 
-.fecha-modal{
+.fecha-modal {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -409,19 +509,20 @@ main {
     width: 40px;
     height: 40px;
     padding: 4px;
-    margin:0px;
+    margin: 0px;
     /* border-radius: 50%; */
     position: absolute;
     top: 0;
     right: 0;
 }
 
-.fecha-modal:hover, .fecha-modal:focus{
+.fecha-modal:hover,
+.fecha-modal:focus {
     box-shadow: none;
     background-color: transparent;
 }
 
-.form__modal-header{
+.form__modal-header {
     display: flex;
     justify-content: center;
 }
@@ -440,7 +541,7 @@ main {
     gap: 20px;
 }
 
-.form__modal form{
+.form__modal form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -450,19 +551,19 @@ main {
     gap: 20px;
 }
 
-.form__modal form > label {
+.form__modal form>label {
     display: flex;
     justify-content: center;
     margin: 0px;
     width: 100%;
 }
 
-.form__modal form > label > input {
+.form__modal form>label>input {
     margin: 0px;
     width: 100%;
 }
 
-.form__modal form > button {
+.form__modal form>button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -548,7 +649,7 @@ main {
     }
 }
 
-.navegacao{
+.navegacao {
     background-color: rgba(53 82 33 /.5);
     opacity: .2;
     display: flex;
@@ -565,20 +666,20 @@ main {
     animation: balancadinha 1s infinite;
 }
 
-.navegacao:active{
+.navegacao:active {
     opacity: 1;
 }
 
-.navegacao:focus{
+.navegacao:focus {
     box-shadow: none;
 }
 
-.navegacao:hover{
+.navegacao:hover {
     background-color: rgba(53 82 33 /.5);
     opacity: 1;
 }
 
-.navegacao>i{
+.navegacao>i {
     font-size: 60px;
     font-weight: 100;
 }
@@ -587,41 +688,118 @@ main {
     0% {
         transform: translateY(0px);
     }
-    25%{
+
+    25% {
         transform: translateY(1px);
     }
-    50%{
+
+    50% {
         transform: translateY(0px);
     }
+
     100% {
         transform: translateY(-1px);
     }
 }
 
-.msgErroTel{
+.msgErroTel {
     padding: 10px 20px;
     font-weight: 500;
     animation: erro 1s infinite;
 }
 
 @keyframes erro {
-    to{
+    to {
         color: rgb(247, 62, 62);
     }
-    from{
+
+    from {
         color: rgb(230, 208, 208);
     }
 }
 
-.triste{
+.triste {
     animation: tristeza 6s linear;
 }
 
 @keyframes tristeza {
-    to{
+    to {
         filter: blur(5px);
     }
-    from{
+
+    from {
         filter: blur(0);
+    }
+}
+
+.spaceOutRight {
+    animation-name: spaceOutRight;
+    animation-duration: .4s;
+}
+
+@keyframes spaceOutRight {
+    0% {
+        opacity: 1;
+        /* transform-origin: 100% 50%; */
+        transform: translate(0%, 0%);
+    }
+
+    100% {
+        opacity: 0;
+        /* transform-origin: 100% 50%; */
+        transform: translate(200%, 0%);
+    }
+}
+
+.spaceInLeft {
+    animation-name: spaceInLeft;
+    animation-duration: .4s;
+}
+
+@keyframes spaceInLeft {
+    0% {
+        opacity: 0;
+        /* transform-origin: 0% 50%; */
+        transform: translate(-200%, 0%);
+    }
+
+    100% {
+        opacity: 1;
+        /* transform-origin: 0% 50%; */
+        transform: translate(0%, 0%);
+    }
+}
+
+.spaceOutLeft {
+    animation-name: spaceOutLeft;
+    animation-duration: .4s;
+}
+
+@keyframes spaceOutLeft {
+    0% {
+        opacity: 1;
+        transform: translate(0%, 0%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-200%, 0%);
+    }
+}
+
+.spaceInRight {
+    animation-name: spaceInRight;
+    animation-duration: .4s;
+}
+
+@keyframes spaceInRight {
+    0% {
+        opacity: 0;
+        transform: translate(200%, 0%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0%, 0%);
     }
 }
