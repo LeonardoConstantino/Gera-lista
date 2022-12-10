@@ -47,7 +47,7 @@ const capitalized = (str) => {
 }
 
 const arrItensUnicos = arr => {
-    if(!arr || !Array.isArray(arr)) return []
+    if (!arr || !Array.isArray(arr)) return []
     return [
         ...new Set(arr.map(i => JSON.stringify(i)))
     ].map(i => JSON.parse(i))
@@ -104,10 +104,10 @@ const criar = (e) => {
         checkado: false
     }
     const tempArr = arrItensUnicos([item, ...itens])
-    const contemItem = itens.map(i=>JSON.stringify(i))
+    const contemItem = itens.map(i => JSON.stringify(i))
         .includes(JSON.stringify(item))
 
-    if(contemItem){
+    if (contemItem) {
         inputAdicionar.value = "Item existente"
         setTimeout(() => {
             inputAdicionar.value = ""
@@ -458,12 +458,8 @@ const setCheckedOuNaoTodosCheckbox = () => {
 
     if (checkboxSelectAll.checked) {
         checkboxsSelecionar.forEach((checkbox) => checkbox.checked = true)
-        // checkboxsSelecionar.forEach((checkbox) =>{
-        //     const liCheckbox = checkbox.parentElement.parentElement.parentElement.parentElement
-        //     if(liCheckbox.classList.contains("display-none")) return
-        //     checkbox.checked = true
-        // })
         itens.forEach((item) => item.checkado = true)
+
         salvaLocalStorage("dadosLista", dados)
         criarLista()
         return
@@ -471,6 +467,7 @@ const setCheckedOuNaoTodosCheckbox = () => {
 
     itens.forEach((item) => item.checkado = false);
     checkboxsSelecionar.forEach((checkbox) => checkbox.checked = false)
+
     salvaLocalStorage("dadosLista", dados)
     criarLista()
 }
@@ -479,79 +476,55 @@ ler()
 
 setChekcboxIndefinido()
 
-inputAdicionar.addEventListener('focus', () => {
-    moverParaTopo(inputAdicionar, 4)
-})
+inputAdicionar.addEventListener('focus', () => moverParaTopo(inputAdicionar, 4))
 
-inputPesquisar.addEventListener('focus', () => {
-    moverParaTopo(inputPesquisar, -12)
-})
+inputPesquisar.addEventListener('focus', () => moverParaTopo(inputPesquisar, -12))
 
-textarea.addEventListener('focus', () => {
-    moverParaTopo(fildsetTexto, 12)
-})
+textarea.addEventListener('focus', () => moverParaTopo(fildsetTexto, 12))
 
 inputAdicionar.addEventListener('input', setDisabledBtnAdicionar)
 
 textarea.addEventListener('input', setDisabledBtnReceber)
 
-btnReceber.addEventListener('click', e => {
-    receberLista(e)
-})
+btnReceber.addEventListener('click', e => receberLista(e))
 
 btnAdicionar.addEventListener('click', e => criar(e))
 
 checkboxEditar.addEventListener('change', seteModoEditar)
 
-inputPesquisar.addEventListener('input', e => {
-    mostraElementosPesquisados(e)
-})
+inputPesquisar.addEventListener('input', e => mostraElementosPesquisados(e))
 
 checkboxnumero.addEventListener('change', criarLista)
 
-btnDeleteAll.addEventListener('click', e => {
-    apagarTudoOuCancelar(e)
-})
+btnDeleteAll.addEventListener('click', e => apagarTudoOuCancelar(e))
 
-btnAbreEnviar.addEventListener('click', e => {
-    abrirModalEnviar(e)
-})
+btnAbreEnviar.addEventListener('click', e => abrirModalEnviar(e))
 
-btnEnviar.addEventListener('click', e => {
-    enviarParaWhatsApp(e)
-})
+btnEnviar.addEventListener('click', e => enviarParaWhatsApp(e))
 
-btnFechaModal.addEventListener('click', e => {
-    fecharModal(e)
-})
+btnFechaModal.addEventListener('click', e => fecharModal(e))
 
-btnCopiar.addEventListener('click', e => {
-    enviarParaAreaDeTranferencia(e)
-})
+btnCopiar.addEventListener('click', e => enviarParaAreaDeTranferencia(e))
 
-btnNavegacao.addEventListener('click', e => {
-    setSubirOuDescer(e)
-})
+btnNavegacao.addEventListener('click', e => setSubirOuDescer(e))
 
 window.addEventListener('scroll', setSetaSubirOuDescer)
 
 checkboxSelectAll.addEventListener('change', setCheckedOuNaoTodosCheckbox)
 
-btnAbreTutorial.addEventListener('click', ()=>{
+btnAbreTutorial.addEventListener('click', () => {
     modalTutorial.showModal()
     clicouTutorial = true
     btnAbreTutorial.classList.remove("nao-clicado")
 })
 
-btnFechaTutorial.addEventListener('click', ()=>{
-    modalTutorial.close()
-})
+btnFechaTutorial.addEventListener('click', () => modalTutorial.close())
 
-btnVoltarTutorial.addEventListener('click', ()=>{
+btnVoltarTutorial.addEventListener('click', () => {
     const lis = document.querySelectorAll('[data-liTutorial]')
-    let index
+    let index = 0
 
-    lis.forEach((item, i)=>{
+    lis.forEach((item, i) => {
         if (!item.classList.contains("display-none")) {
             item.classList.add("spaceOutLeft")
             setTimeout(() => {
@@ -566,7 +539,7 @@ btnVoltarTutorial.addEventListener('click', ()=>{
     if (index === -1) {
         index = lis.length - 1
     }
-    
+
     setTimeout(() => {
         lis[index].classList.remove("display-none")
         lis[index].classList.add("spaceInRight")
@@ -577,11 +550,11 @@ btnVoltarTutorial.addEventListener('click', ()=>{
     }, 300);
 })
 
-btnAvancarTutorial.addEventListener('click', ()=>{
+btnAvancarTutorial.addEventListener('click', () => {
     const lis = document.querySelectorAll('[data-liTutorial]')
     let index = 0
 
-    lis.forEach((item, i)=>{
+    lis.forEach((item, i) => {
         if (!item.classList.contains("display-none")) {
             item.classList.add("spaceOutRight")
             setTimeout(() => {
@@ -591,12 +564,12 @@ btnAvancarTutorial.addEventListener('click', ()=>{
             index = i
         }
     })
-    
+
     index++
     if (index === lis.length) {
         index = 0
     }
-    
+
     setTimeout(() => {
         lis[index].classList.remove("display-none")
         lis[index].classList.add("spaceInLeft")
@@ -606,4 +579,18 @@ btnAvancarTutorial.addEventListener('click', ()=>{
         lis[index].classList.remove("spaceInLeft")
     }, 300);
 
+})
+
+document.querySelector('body').addEventListener('click', e => {
+    const formList = document.querySelector(".form__list")
+    const clases = e.composedPath()
+        .map(item => item.classList)
+        .filter(item => item && item.length !== 0)
+
+    if (clases.some(item => item.contains("form__list"))) {
+        formList.classList.add("form__list--grande")
+        moverParaTopo(inputPesquisar, -12)
+        return
+    }
+    formList.classList.remove("form__list--grande")
 })
